@@ -23,9 +23,9 @@ require 'voicetext'
 
 voicetext = Voicetext.new('YOUR_API_KEY')
 
-wav = voicetext.tts('にっこにっこにー', 'show')
+wav = voicetext.tts('にっこにっこにー', 'hikari')
 
-wav = voicetext.tts('にっこにっこにー', 'show', { :emotion => 'happiness' })
+wav = voicetext.tts('にっこにっこにー', 'hikari', { :emotion => 'happiness' })
 ```
 
 ## Contributing
