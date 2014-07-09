@@ -1,6 +1,6 @@
 # Voicetext
 
-TODO: Write a gem description
+voicetext API Ruby Client
 
 ## Installation
 
@@ -24,6 +24,8 @@ require 'voicetext'
 voicetext = Voicetext.new('YOUR_API_KEY')
 
 wav = voicetext.tts('にっこにっこにー', 'show')
+
+wav = voicetext.tts('にっこにっこにー', 'show', { :emotion => 'happiness' })
 ```
 
 ## Contributing
