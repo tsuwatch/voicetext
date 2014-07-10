@@ -4,6 +4,9 @@ require 'uri'
 
 class Voicetext
 
+  class BadRequest < StandardError; end
+  class Unauthorized < StandardError; end
+
   class << self
 
     def speakers
@@ -28,10 +31,21 @@ class Voicetext
     http.start do |https|
       req = Net::HTTP::Post.new(uri.path)
       req.basic_auth(@api_key, '')
-      req.body = body(text, speaker, options)
+      req.body = build(text, speaker, options)
       res = https.request(req)
     end
-    res.body
+
+    case res
+    when Net::HTTPOK
+      res.body
+    when Net::HTTPBadRequest
+      raise BadRequest.new(res.body)
+    when Net::HTTPUnauthorized
+      raise Unauthorized.new(res.body)
+    else
+      raise StandardError.new(res.body)
+    end
+
   end
 
   def valid_pitch_range?(pitch)
@@ -48,7 +62,7 @@ class Voicetext
 
   private
 
-  def body(text, speaker, options)
+  def build(text, speaker, options)
     data = "text=#{text}&speaker=#{speaker}"
     data << "&emotion=#{options[:emotion]}" if options[:emotion]
     data << "&emotion_level=#{options[:emotion_level]}" if options[:emotion_level]
