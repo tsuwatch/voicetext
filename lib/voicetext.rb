@@ -48,18 +48,6 @@ class Voicetext
 
   end
 
-  def valid_pitch_range?(pitch)
-    pitch.between?(50, 200)
-  end
-
-  def valid_speed_range?(speed)
-    speed.between?(50, 400)
-  end
-
-  def valid_volume_range?(volume)
-    volume.between?(50, 200)
-  end
-
   private
 
   def build(text, speaker, options)
