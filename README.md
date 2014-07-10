@@ -18,6 +18,8 @@ Or install it yourself as:
 
 ## Usage
 
+See api document [https://cloud.voicetext.jp/webapi/docs/api](https://cloud.voicetext.jp/webapi/docs/api)
+
 ```ruby
 require 'voicetext'
 
