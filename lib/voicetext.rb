@@ -7,17 +7,23 @@ class Voicetext
   class BadRequest < StandardError; end
   class Unauthorized < StandardError; end
 
-  class << self
+  SPEAKERS = {
+    SHOW:  'show',
+    HARUKA: 'haruka',
+    HIKARI: 'hikari',
+    TAKERU: 'takeru'
+  }.freeze
 
-    def speakers
-      ['show', 'haruka', 'hikari', 'takeru']
-    end
+  EMOTIONS = {
+    HAPPINESS: 'happiness',
+    ANGER: 'anger',
+    SADNESS: 'sadness7'
+  }.freeze
 
-    def emotions
-      ['happiness', 'anger', 'sadness']
-    end
-
-  end
+  EMOTION_LEVELS = {
+    HIGH: 2,
+    NORMAL: 1
+  }.freeze
 
   def initialize(api_key)
     @api_key = api_key
